@@ -1,7 +1,6 @@
 ﻿-- Task 1
 -- querying all of the entries in the Genre table
 SELECT * FROM Genre;
-
 -- Task 2
 -- querying all the entries in the Artist table and order by the artist's name
 SELECT * FROM Artist ORDER BY YearEstablished;
@@ -21,6 +20,10 @@ Join Album al on ar.Id = al.ArtistId
 Join Genre g on al.GenreId = g.Id
 Where g.Id = 7 or g.Id = 4 or g.Id = 2; -- Task 5 -- SELECTing query that lists all the Artists that have a Jazz or Rock Album
 
-
-
-
+-- Task 6
+-- SELECTing statement that lists the Albums with no songs
+Select
+al.Id, al.Title
+From Album al
+Left Join Song s on al.Id = s.AlbumId
+Where s.AlbumId is null;
