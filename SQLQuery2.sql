@@ -27,3 +27,36 @@ al.Id, al.Title
 From Album al
 Left Join Song s on al.Id = s.AlbumId
 Where s.AlbumId is null;
+-- Task 7
+-- INSERTing statement, add one of your favorite artists to the Artist table
+Insert into Artist (ArtistName, YearEstablished) Values ('The Weeknd', 2010);
+Insert into Artist (ArtistName, YearEstablished) Values ('Teddy Afro', 2001);
+
+
+-- Task 8
+-- INSERTing statement, add one, or more, albums by your artist to the Album table
+Insert into Album (Title, ReleaseDate, AlbumLength, Label, ArtistId, GenreId) Values ('Ethiopia', '04/14/2017', 2890, 'Def Jam', 45, 10);
+
+-- Task 9 
+-- INSERTing statement, add some songs that are on that album to the Song table
+Insert into Song(Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
+Select 'Marakiye', '2343', ReleaseDate, GenreId, '45', '24'
+from Album
+where Id = 23;
+
+-- Task 10
+-- SELECTing query that provides the song titles, album title, and artist name for all of the data I just entered in
+-- Then I'm going to use LEFT JOIN keyword sequence to connect the tables, and 
+-- the WHERE keyword to filter the results to the album and artist you added
+Select Song.Title, ar.ArtistName as ArtistName, al.Title as AlbumTite
+from Song 
+Left Join Album al on Song.AlbumId = al.Id
+Left Join Artist ar on Song.ArtistId = ar.Id
+where Song.Title = 'Marakiye'
+      or ar.ArtistName = 'Teddy Afro'
+      or al.Title = 'Ethiopia';
+
+
+
+
+
